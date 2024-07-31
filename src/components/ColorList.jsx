@@ -1,23 +1,15 @@
 /* eslint-disable */
-import React, { useContext } from 'react';
-import { ColorContext } from '../main';
+import React from 'react';
 import Color from './Color';
+import { useColors } from '../hooks/color-hooks';
 
 export default function ColorList({onRemoveColor = f => f, onRateColor = f => f}) {
+    const {colors} = useColors()
+
+    if(!colors.length) return <>No Colors Listed. (Add a Color)</>
     return (
-        <ColorContext.Consumer>
-            {context => {
-                if(!context.colors.length) {
-                    return <>No Colors Listed. (Add a Color)</>
-                }
-                return (
-                    <>
-                        {context.colors.map(color => (
-                            <Color key={color.id} {...color} />
-                        ))}
-                    </>
-                )
-            }}
-        </ColorContext.Consumer>
+        <>
+            {colors.map(color => <Color key={color.id} {...color} />)}
+        </>
     )
 }
