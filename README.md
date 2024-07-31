@@ -1,1 +1,1 @@
-# (v1) Basic Color Palette using React 
+# (v2) Basic Color Palette using React 
